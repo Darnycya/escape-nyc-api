@@ -1,0 +1,22 @@
+{
+  "name": "dallas-cowboys-api",
+  "version": "1.0.0",
+  "description": "An api of the Dallas Cowboys 2020 roster",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.generalassemb.ly/darnycya/dallas-cowboys-roster-api"
+  },
+  "keywords": [
+    "Dallas",
+    "Cowboys",
+    "API",
+    "Roster",
+    "NFL"
+  ],
+  "author": "Darnycya",
+  "license": "ISC"
+}
