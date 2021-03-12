@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import './Products.css'
-
-import Product from '../../components/Product/Product'
+import './Players.css'
+import Player from '../../components/Player/Player'
 import Search from '../../components/Search/Search'
 import { AZ, ZA, lowestFirst, highestFirst } from "../../utils/sort"
 import Sort from '../../components/Sort/Sort'
-import Layout from '../../components/shared/Layout/Layout'
 import { getPlayers } from '../../services/players'
 
 const Players = (props) => {
@@ -65,4 +63,4 @@ const Players = (props) => {
 }
 
 
-export default Products
+export default Players
