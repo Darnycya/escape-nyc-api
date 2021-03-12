@@ -1,18 +1,28 @@
-import React, { useState } from 'react'
-import './PlayerCreate.css'
-import { Redirect } from 'react-router-dom'
-import { createPlayer } from '../../services/players'
+import React, { useState, useEffect } from 'react'
+import './PlayerEdit.css'
+import { useParams, Redirect } from 'react-router-dom'
+import { getPlayer, updatePlayer } from '../../services/players'
 
-const PlayerCreate = (props) => {
+const PlayerEdit = (props) => {
 
     const [player, setPlayer] = useState({
             name: '',
             image: '',
             position: '',
             jerseyNumber: ''
-        })
+    })
 
-    const [isCreated, setCreated] = useState(false)
+    const [isUpdated, setUpdated] = useState(false)
+    let { id } = useParams()
+
+    useEffect(() => {
+        const fetchPlayer = async () => {
+            const player = await getPlayer(id)
+            setPlayer(player)
+        }
+        fetchPlayer()
+    }, [id])
+
 
     const handleChange = (event) => {
         const { name, value } = event.target
@@ -24,53 +34,62 @@ const PlayerCreate = (props) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        const created = await createPlayer(player)
-        setCreated({ created })
+        let { id } = props.match.params
+        const updated = await updatePlayer(id, player)
+        setUpdated(updated)
     }
 
-    if (isCreated) {
-        return <Redirect to={`/players`} />
+    if (isUpdated) {
+        return <Redirect to={`/players/${props.match.params.id}`} />
     }
+
     return (
-       
-            <form className="create-form" onSubmit={handleSubmit}>
-                <input
-                    className="input-name"
-                    placeholder='Name'
-                    value={player.name}
-                    name='name'
-                    required
-                    autoFocus
-                    onChange={handleChange}
-                />
-                <input
-                    className="input-image"
-                    placeholder='Image URL'
-                    value={player.image}
-                    name='image'
-                    required
-                    onChange={handleChange}
-                />
-                <input
-                    className="input-position"
-                    placeholder='Position'
-                    value={player.position}
-                    name='position'
-                    required
-                    onChange={handleChange}
-                />
-                <input
-                    className="input-jerseyNumber"
-                    placeholder='Jersey Number'
-                    value={player.jerseyNumber}
-                    name='jerseyNumber'
-                    required
-                    onChange={handleChange}
-                />
-                <button type='submit' className="submit-button">Submit</button>
-            </form>
-        
+        <Layout user={props.user}>
+            <div className="player-edit">
+                <div className="image-container">
+                    <img className="edit-player-image" src={player.image} alt={player.name} />
+                    <form onSubmit={handleSubmit}>
+                        <input
+                            className="edit-input-image-link"
+                            placeholder='Image URL'
+                            value={player.image}
+                            name='imgURL'
+                            required
+                            onChange={handleChange}
+                        />
+                    </form>
+                </div>
+                <form className="edit-form" onSubmit={handleSubmit}>
+                    <input
+                        className="input-name"
+                        placeholder='Name'
+                        value={player.name}
+                        name='name'
+                        required
+                        autoFocus
+                        onChange={handleChange}
+                    />
+                    <input
+                        className="input-position"
+                        placeholder='Position'
+                        value={player.position}
+                        name='position'
+                        required
+                        onChange={handleChange}
+                    />
+                    <input
+                        className="input-jerseyNumber"
+                        placeholder='Jersey Number'
+                        value={player.jerseyNumber}
+                        name='jerseyNumber'
+                        required
+                        onChange={handleChange}
+                    />
+                    <button type='submit' className="save-button">Save</button>
+                </form>
+            </div>
+        </Layout>
     )
 }
 
-export default PlayerCreate
+export default PlayerEdit
