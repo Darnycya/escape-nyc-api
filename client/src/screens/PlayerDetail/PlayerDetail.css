@@ -18,3 +18,20 @@ button {
 .edit-button {
   text-decoration: none;
 }
+
+@media all and (max-width: 600px) {
+
+ 
+
+  .player-detail-image {
+    width: 500px;
+    height: 150px;
+    border: solid white 6px;
+    margin-left:40px;
+  }
+
+  .button-container{
+    margin-left: 450px;
+  }
+
+}
