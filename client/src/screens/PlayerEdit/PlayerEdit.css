@@ -31,3 +31,18 @@ margin-left: 10px;
   margin-left: 10px;
   
 }
+
+
+@media all and (max-width: 600px) {
+
+  .edit-form {
+    margin-left: 390px;
+    margin-top: 10px;
+    
+  }
+
+  .save-button{
+    margin-left: 120px;
+  }
+
+}
