@@ -33,6 +33,7 @@ const Players = (props) => {
 
   return (
     <>
+      <img className="logo" src="http://clipart-library.com/image_gallery2/Dallas-Cowboys-PNG-Clipart.png"></img>
       <Search onSubmit={handleSubmit} onChange={handleSearch} />
       
       <div className="players">
