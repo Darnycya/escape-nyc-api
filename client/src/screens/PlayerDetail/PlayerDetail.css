@@ -24,14 +24,14 @@ button {
  
 
   .player-detail-image {
-    width: 500px;
+    width: 380px;
     height: 150px;
     border: solid white 6px;
-    margin-left:40px;
+    margin-left:4px;
   }
 
   .button-container{
-    margin-left: 450px;
+    margin-left: 300px;
   }
 
 }
