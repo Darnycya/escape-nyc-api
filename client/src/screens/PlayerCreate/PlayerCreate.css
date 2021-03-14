@@ -7,7 +7,10 @@
 
   .create-form{
     margin-top: 100px;
-    margin-left: 50px;
+    margin-left: 40px;
   }
 
+  .submit-button{
+    margin-left: 270px;
+  }
 }
