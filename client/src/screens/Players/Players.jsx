@@ -3,6 +3,7 @@ import Player from '../../components/PlayerList/PlayerList'
 import Search from '../../components/Search/Search'
 import { getPlayers } from '../../services/players'
 import Logo from '../../components/Logo/Logo'
+import { Link } from 'react-router-dom';
 import './Players.css'
 
 const Players = (props) => {
@@ -40,6 +41,8 @@ const Players = (props) => {
       <div className="players">
         {playersJSX}
       </div>
+
+      <Link to='/add-player'><button className="add-button">Add A Player</button></Link>
     </>
   )
 }

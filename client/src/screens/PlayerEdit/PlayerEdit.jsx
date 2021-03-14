@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Redirect } from 'react-router-dom'
 import { getPlayer, updatePlayer } from '../../services/players'
+import Logo from '../../components/Logo/Logo'
+import './PlayerEdit.css'
 
 const PlayerEdit = (props) => {
 
@@ -43,22 +45,21 @@ const PlayerEdit = (props) => {
     }
 
     return (
-        <>
+      <>
+        <Logo />
             <div className="player-edit">
                 <div className="image-container">
-                    <img className="edit-player-image" src={player.image} alt={player.name} />
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            className="edit-input-image-link"
+                    <img className="player-detail-image" src={player.image} alt={player.name} />
+                </div>
+          <form className="edit-form" onSubmit={handleSubmit}>
+          <input
+                            className="input-image-link"
                             placeholder='Image URL'
                             value={player.image}
                             name='imgURL'
                             required
-                            onChange={handleChange}
-                        />
-                    </form>
-                </div>
-                <form className="edit-form" onSubmit={handleSubmit}>
+              onChange={handleChange}
+              />
                     <input
                         className="input-name"
                         placeholder='Name'

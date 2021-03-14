@@ -1,7 +1,9 @@
 .player-detail-image{
   margin-left: 200px;
   margin-top: 50px;
-  border: 10px white solid
+  border: 10px white solid;
+  width: 980px;
+  height: 320px;
 }
 
 .button-container{

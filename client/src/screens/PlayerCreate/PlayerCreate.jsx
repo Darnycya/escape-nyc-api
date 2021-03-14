@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { createPlayer } from '../../services/players'
+import Logo from '../../components/Logo/Logo'
+import "./PlayerCreate.css"
 
 const PlayerCreate = (props) => {
 
@@ -31,7 +33,8 @@ const PlayerCreate = (props) => {
         return <Redirect to={`/players`} />
     }
     return (
-       
+       <>
+        <Logo />
             <form className="create-form" onSubmit={handleSubmit}>
                 <input
                     className="input-name"
@@ -43,7 +46,7 @@ const PlayerCreate = (props) => {
                     onChange={handleChange}
                 />
                 <input
-                    className="input-image"
+                    className="input-image-link"
                     placeholder='Image URL'
                     value={player.image}
                     name='image'
@@ -68,7 +71,7 @@ const PlayerCreate = (props) => {
                 />
                 <button type='submit' className="submit-button">Submit</button>
             </form>
-        
+        </>
     )
 }
 

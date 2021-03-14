@@ -1,0 +1,33 @@
+.player-edit{
+
+}
+
+
+.player-detail-image{
+  border: 10px white solid
+}
+
+.edit-form {
+  margin-left: 400px;
+  margin-top: 10px;
+  
+}
+
+.input-image-link{
+margin-left: 10px;
+
+}
+
+.input-name{
+  margin-left: 10px;
+  
+}
+
+.input-position{
+  margin-left: 10px;
+  
+}
+.input-jerseyNumber{
+  margin-left: 10px;
+  
+}
