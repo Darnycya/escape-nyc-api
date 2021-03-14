@@ -9,7 +9,7 @@ import './Players.css'
 const Players = (props) => {
   const [allPlayers, setAllPlayers] = useState([])
   const [queriedPlayers, setQueriedPlayers] = useState([])
-  const [sortType, setSortType] = useState([])
+ 
 
   useEffect(() => {
     const fetchPlayers = async () => {
