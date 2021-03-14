@@ -1,0 +1,18 @@
+.player-detail-image{
+  margin-left: 200px;
+  margin-top: 50px;
+  border: 10px white solid
+}
+
+.button-container{
+  margin-left: 1100px;
+}
+
+button {
+  background-color: white;
+  border-radius: 25px;
+}
+
+.edit-button {
+  text-decoration: none;
+}
