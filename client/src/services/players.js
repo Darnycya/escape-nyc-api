@@ -22,7 +22,7 @@ export const getPlayer = async id => {
   }
 }
 
-export const createPlayer = async product => {
+export const createPlayer = async player => {
   try {
     const response = await axios.post(`${apiUrl}/players`, player)
     return response.data
