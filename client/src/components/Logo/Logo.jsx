@@ -5,7 +5,7 @@ export default function Logo() {
   return (
     <div>
       <Link to='/players'>
-        <img className="logo" alt="dallas-logo" src="http://clipart-library.com/image_gallery2/Dallas-Cowboys-PNG-Clipart.png"></img>
+        <img className="logo" alt="dallas-logo" src="https://res.cloudinary.com/darnycya/image/upload/v1615691659/Dallas-Cowboys-PNG-Clipart_jmdnwz.png"></img>
         </Link>
     </div>
   )
