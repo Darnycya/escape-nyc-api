@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Player from '../../components/PlayerList/PlayerList'
 import Search from '../../components/Search/Search'
 import { getPlayers } from '../../services/players'
+import './Players.css'
 
 const Players = (props) => {
   const [allPlayers, setAllPlayers] = useState([])
@@ -17,29 +18,11 @@ const Players = (props) => {
     fetchPlayers()
   }, [])
 
-  const handleSort = type => {
-    setSortType(type)
-    switch (type) {
-      case "name-ascending":
-        setQueriedPlayers(AZ(queriedPlayers))
-        break
-      case "name-descending":
-        setQueriedPlayers(ZA(queriedPlayers))
-        break
-      case "price-ascending":
-        setQueriedPlayers(lowestFirst(queriedPlayers))
-        break
-      case "price-descending":
-        setQueriedPlayers(highestFirst(queriedPlayers))
-        break
-      default:
-        break
-    }
-  }
+
 
   const handleSearch = event => {
     const newQueriedPlayers = allPlayers.filter(player => player.name.toLowerCase().includes(event.target.value.toLowerCase()))
-    setQueriedPlayers(newQueriedPlayers, () => handleSort(sortType))
+    setQueriedPlayers(newQueriedPlayers)
   }
 
   const handleSubmit = event => event.preventDefault()
@@ -51,7 +34,7 @@ const Players = (props) => {
   return (
     <>
       <Search onSubmit={handleSubmit} onChange={handleSearch} />
-      <Sort onSubmit={handleSubmit} onChange={handleSort} />
+      
       <div className="players">
         {playersJSX}
       </div>

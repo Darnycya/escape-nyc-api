@@ -14,7 +14,7 @@ const PlayerDetail = (props) => {
             setPlayer(player)
             setLoaded(true)
         }
-        fetchplayer()
+        fetchPlayer()
     }, [id])
 
     if (!isLoaded) {
@@ -22,7 +22,7 @@ const PlayerDetail = (props) => {
     }
 
     return (
-        <Layout>
+        <>
             <div className="player-detail">
                 <img className="player-detail-image" src={player.image} alt={player.name} />
                 <div className="detail">
@@ -35,7 +35,7 @@ const PlayerDetail = (props) => {
                     </div>
                 </div>
             </div>
-        </Layout>
+        </>
     )
 }
 

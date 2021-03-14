@@ -1,0 +1,13 @@
+.player-image {
+  width: 650px;
+  height: 150px;
+  border: solid white 6px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.players {
+  width: 100%;
+  margin-top: 200px;
+  margin-left: 40px;
+}

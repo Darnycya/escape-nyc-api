@@ -43,7 +43,7 @@ const PlayerEdit = (props) => {
     }
 
     return (
-        <Layout user={props.user}>
+        <>
             <div className="player-edit">
                 <div className="image-container">
                     <img className="edit-player-image" src={player.image} alt={player.name} />
@@ -87,7 +87,7 @@ const PlayerEdit = (props) => {
                     <button type='submit' className="save-button">Save</button>
                 </form>
             </div>
-        </Layout>
+       </>
     )
 }
 
