@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import './PlayerEdit.css'
 import { useParams, Redirect } from 'react-router-dom'
 import { getPlayer, updatePlayer } from '../../services/players'
 

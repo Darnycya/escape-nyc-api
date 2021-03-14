@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import './PlayerCreate.css'
 import { Redirect } from 'react-router-dom'
 import { createPlayer } from '../../services/players'
 

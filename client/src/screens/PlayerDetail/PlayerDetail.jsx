@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import './PlayerDetail.css'
 import { getPlayer, deletePlayer } from '../../services/players'
 import { useParams, Link } from 'react-router-dom'
 
@@ -32,7 +31,7 @@ const PlayerDetail = (props) => {
                     <div className="jerseyNumber">{player.jerseyNumber}</div>
                     <div className="button-container">
                         <button className="edit-button"><Link className="edit-link" to={`/players/${player._id}/edit`}>Edit</Link></button>
-                        <button className="delete-button" onClick={() => deleteplayer(player._id)}>Delete</button>
+                        <button className="delete-button" onClick={() => deletePlayer(player._id)}>Delete</button>
                     </div>
                 </div>
             </div>

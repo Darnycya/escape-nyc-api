@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import './Players.css'
-import Player from '../../components/Player/Player'
+import Player from '../../components/PlayerList/PlayerList'
 import Search from '../../components/Search/Search'
-import { AZ, ZA, lowestFirst, highestFirst } from "../../utils/sort"
-import Sort from '../../components/Sort/Sort'
 import { getPlayers } from '../../services/players'
 
 const Players = (props) => {
