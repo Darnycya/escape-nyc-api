@@ -24,33 +24,32 @@
 }
 
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 400px) {
 
   .logo {
   width: 200px;
-  margin-left: 200px;
+  margin-left: 110px;
+  margin-bottom: 20px;
   }
 
 
   .player-image {
-    width: 500px;
+    width: 387px;
     height: 150px;
-    border: solid white 6px;
-    margin: 0 auto;
+    border: solid navy 6px;
     margin-bottom: 10px;
+    
     
   }
 
   .players {
-    width: 100%;
    margin-top: 100px;
-   width: 600px;
+   margin-left: -10px;
+   
   }
 
   .add-button{
-    margin-left: 250px;
-    margin-top:20px;
-    margin-bottom:20px;
+    margin-left: 160px;
   }
   
 
