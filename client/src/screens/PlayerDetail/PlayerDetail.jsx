@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getPlayer, deletePlayer } from '../../services/players'
 import { useParams, Link } from 'react-router-dom'
+import Logo from '../../components/Logo/Logo'
 
 const PlayerDetail = (props) => {
 
@@ -22,7 +23,8 @@ const PlayerDetail = (props) => {
     }
 
     return (
-        <>
+      <>
+        <Logo />
             <div className="player-detail">
                 <img className="player-detail-image" src={player.image} alt={player.name} />
                 <div className="detail">

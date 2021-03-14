@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Player from '../../components/PlayerList/PlayerList'
 import Search from '../../components/Search/Search'
 import { getPlayers } from '../../services/players'
+import Logo from '../../components/Logo/Logo'
 import './Players.css'
 
 const Players = (props) => {
@@ -33,7 +34,7 @@ const Players = (props) => {
 
   return (
     <>
-      <img className="logo" src="http://clipart-library.com/image_gallery2/Dallas-Cowboys-PNG-Clipart.png"></img>
+     <Logo />
       <Search onSubmit={handleSubmit} onChange={handleSearch} />
       
       <div className="players">
