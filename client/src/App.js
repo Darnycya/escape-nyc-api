@@ -1,4 +1,4 @@
-
+/* eslint no-eval: 0 */
 import React from 'react'
 import './App.css'
 import Players from './screens/Players/Players'
