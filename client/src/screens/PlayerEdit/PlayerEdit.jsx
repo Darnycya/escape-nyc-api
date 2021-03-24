@@ -51,7 +51,7 @@ const PlayerEdit = (props) => {
                 <div className="image-container">
                     <img className="player-detail-image" src={player.image} alt={player.name} />
                 </div>
-          <form className="edit-form" onSubmit={handleSubmit}>
+          <form autocomplete="off" className="edit-form" onSubmit={handleSubmit}>
           <input
                             className="input-image-link"
                             placeholder='Image URL'

@@ -35,7 +35,7 @@ const PlayerCreate = (props) => {
     return (
        <>
         <Logo />
-            <form className="create-form" onSubmit={handleSubmit}>
+            <form autocomplete="off" className="create-form" onSubmit={handleSubmit}>
                 <input
                     className="input-name"
                     placeholder='Name'

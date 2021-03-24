@@ -3,7 +3,7 @@ import './Search.css'
 
 const Search = (props) => {
     return (
-        <form className="search-form" onSubmit={(e) => props.onSubmit(e)}>
+        <form autocomplete="off" className="search-form" onSubmit={(e) => props.onSubmit(e)}>
             <input
                 className="search-input"
                 value={props.value}

@@ -32,7 +32,7 @@ const PlayerDetail = (props) => {
                     
                     <div className="button-container">
                         <button className="edit-button"><Link className="edit-link" to={`/players/${player._id}/edit`}>Edit</Link></button>
-                        <button className="delete-button" onClick={() => deletePlayer(player._id)}>Delete</button>
+              <button className="delete-button" onClick={() => deletePlayer(player._id)}><Link className="delete-link" to={`/players`}>Delete</Link></button>
                     </div>
                 </div>
             </div>
