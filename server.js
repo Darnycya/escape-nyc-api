@@ -4,88 +4,78 @@ const bodyParser = require('body-parser')
 const logger = require('morgan')
 const cors = require('cors')
 const PORT = process.env.PORT || 8080
-
+const db = require('./db/connection')
+const Trail = require('./models/trail')
 const app = express()
+
 
 app.use(cors())
 app.use(bodyParser.json())
+// app.use(express.json());
 app.use(logger('dev'))
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 app.listen(PORT, () => {
   console.log(`Express server listening on port ${PORT}`);
 })
 
-const trails =
-  [
-    {
-      "id": "1",
-      "name": "Anthony's Nose",
-      "trailUrl": "https://hikethehudsonvalley.com/wp-content/uploads/2015/05/Spring2014_RWAN_955.jpg",
-      "difficulty": "Medium",
-      "distanceFromNyc": 40,
-      "climbingTime": 2.5,
-      "rating": 4
-    },
-    {
-      "id": "2",
-      "name": "Breakneck Ridge",
-      "trailUrl": "https://www.nynjtc.org/sites/default/files/styles/hike_park_destination_page/public/hotw/BreakneckRidgePanorama_EduardoGil2014.jpg?itok=KOE4oHkO",
-      "difficulty": "Hard",
-      "distanceFromNyc": 50,
-      "climbingTime": 4,
-      "rating": 5
-    },
-    {
-      "id": "3",
-      "name": "Sam's Point",
-      "trailUrl": "https://scenichudson.org/wp-content/uploads/2019/10/OA_Sams-Point01_Diana-Richards-1400x1050.jpg",
-      "difficulty": "Medium",
-      "distanceFromNyc": 79,
-      "climbingTime": 3,
-      "rating": 5
-    },
-    {
-      "id": "4",
-      "name": "Bash Bish Falls",
-      "trailUrl": "https://www.scenichudson.org/wp-content/uploads/2019/10/OA_Bash-Bish_Diana-Richards.jpg",
-      "difficulty": "Easy",
-      "distanceFromNyc": 106,
-      "climbingTime": 1,
-      "rating": 4
-    }
-  ]
-
-app.get('/', (req, res) => {
-  res.send("This is root!");
-});
+app.get('/', (req, res) => res.send("I am GROOT!"))
 
 app.get('/trails', async (req, res) => {
-  res.json(trails)
+    try {
+        const trails = await Trail.find()
+        res.json(trails)
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
 })
 
 app.get('/trails/:id', async (req, res) => {
-  const id = req.params.id
-  const trail = trails.filter(trail => trail.id === id)[0]
-  res.json(trail)
+    try {
+        const { id } = req.params
+        const trail = await Trail.findById(id)
+        if (!trail) throw Error('Trail not found')
+        res.json(trail)
+    } catch (e) {
+        console.log(e)
+        res.send('Trail not found!')
+    }
 })
 
-app.post('/trails', (req, res) => {
-  const trail = req.body
-  trails.push(trail)
-  res.json(trails)
+app.post('/trails', async (req, res) => {
+    try {
+        const trail = await new Trail(req.body)
+        await trail.save()
+        res.status(201).json(trail)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: error.message })
+    }
 })
 
 app.put('/trails/:id', async (req, res) => {
-  const id = req.params.id
-  const trailIndex = trails.findIndex(trail => trail._id === id)
-  const trail = { ...trails[trailIndex], ...req.body }
-  trails.splice(trailIndex, 1, trail)
-  res.json(trail)
+    const { id } = req.params
+    await Trail.findByIdAndUpdate(id, req.body, { new: true }, (error, trail) => {
+        if (error) {
+            return res.status(500).json({ error: error.message })
+        }
+        if (!trail) {
+            return res.status(404).json({ message: 'Trail not found!' })
+        }
+        res.status(200).json(trail)
+    })
 })
 
 app.delete('/trails/:id', async (req, res) => {
-  const id = req.params.id
-  const trailIndex = trails.findIndex(trail => trail._id === id)
-  trails.splice(trailIndex, 1)
-  res.json(trails)
+    try {
+        const { id } = req.params;
+        const deleted = await Trail.findByIdAndDelete(id)
+        if (deleted) {
+            return res.status(200).send("Trail deleted")
+        }
+        throw new Error("Trail not found")
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
 })

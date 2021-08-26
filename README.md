@@ -1,4 +1,4 @@
-# Dallas Cowboys Roster Editor
+<!-- # Dallas Cowboys Roster Editor
 
 <p align="center">
   <img src="https://media.giphy.com/media/0hmpK3WiIsTXJ9jo7R/giphy.gif"></img>
@@ -79,4 +79,4 @@ export const deletePlayer = async id => {
     throw error
   }
 }
-```
+``` -->
