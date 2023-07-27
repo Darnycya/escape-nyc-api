@@ -1,7 +1,7 @@
 # Escape NYC API
 
 
-The Escape NYC API is the API created and used for the <a target="_blank" href="https://github.com/Darnycya/Escape-NYC">Escape NYC</a> full CRUD React App. It's hosted on Heroku and stored using MongoDB. 
+The Escape NYC API is the API created and used for the <a target="_blank" rel="noopener" href="https://github.com/Darnycya/Escape-NYC">Escape NYC</a> full CRUD React App. It's hosted on Heroku and stored using MongoDB. 
 
 
 ## Link To API
