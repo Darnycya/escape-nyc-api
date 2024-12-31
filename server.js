@@ -8,11 +8,17 @@ const db = require('./db/connection')
 const Trail = require('./models/trail')
 const app = express()
 
+const RateLimit = require('express-rate-limit');
+const limiter = RateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // max 100 requests per windowMs
+});
 
 app.use(cors())
 app.use(bodyParser.json())
 // app.use(express.json());
 app.use(logger('dev'))
+app.use(limiter)
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
