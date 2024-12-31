@@ -62,7 +62,9 @@ app.post('/trails', async (req, res) => {
 
 app.put('/trails/:id', async (req, res) => {
     const { id } = req.params
-    await Trail.findByIdAndUpdate(id, req.body, { new: true }, (error, trail) => {
+    const updateData = req.body;
+    // Validate and sanitize updateData here
+    await Trail.findByIdAndUpdate(id, { $set: updateData }, { new: true }, (error, trail) => {
         if (error) {
             return res.status(500).json({ error: error.message })
         }
