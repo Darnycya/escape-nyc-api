@@ -1,4 +1,3 @@
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const logger = require('morgan')
@@ -8,11 +7,16 @@ const db = require('./db/connection')
 const Trail = require('./models/trail')
 const app = express()
 
+const RateLimit = require('express-rate-limit');
+const limiter = RateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // max 100 requests per windowMs
+});
 
 app.use(cors())
 app.use(bodyParser.json())
-// app.use(express.json());
 app.use(logger('dev'))
+app.use(limiter)
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
@@ -55,17 +59,29 @@ app.post('/trails', async (req, res) => {
 })
 
 app.put('/trails/:id', async (req, res) => {
-    const { id } = req.params
-    await Trail.findByIdAndUpdate(id, req.body, { new: true }, (error, trail) => {
-        if (error) {
-            return res.status(500).json({ error: error.message })
+    try {
+        const { id } = req.params;
+        const allowedFields = ["name", "description", "location", "difficulty"];
+        const updates = {};
+
+        // Filter req.body to include only allowed fields
+        for (const key of Object.keys(req.body)) {
+            if (allowedFields.includes(key)) {
+                updates[key] = req.body[key];
+            }
         }
-        if (!trail) {
-            return res.status(404).json({ message: 'Trail not found!' })
+
+        const updatedTrail = await Trail.findByIdAndUpdate(id, { $set: updates }, { new: true, runValidators: true });
+        if (!updatedTrail) {
+            return res.status(404).json({ message: 'Trail not found!' });
         }
-        res.status(200).json(trail)
-    })
-})
+
+        res.status(200).json(updatedTrail);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ error: error.message });
+    }
+});
 
 app.delete('/trails/:id', async (req, res) => {
     try {
